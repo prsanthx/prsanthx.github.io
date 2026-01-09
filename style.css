@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+:root {
+    /* DEFAULT: LIGHT MODE */
+    --bg-color: #f4f4f9;
+    --text-color: #1a1a1a;
+    --accent-color: #0056b3;
+    
+    /* MORE TRANSPARENT GLASS (0.5) */
+    --glass-bg: rgba(255, 255, 255, 0.5); 
+    --glass-border: rgba(0, 0, 0, 0.05); /* Softer border */
+    --card-bg: rgba(255, 255, 255, 0.4); /* Cards even more see-through */
+}
+
+/* DARK MODE (Cyberpunk Look) */
+body.dark-mode {
+    --bg-color: #0b0d10;
+    --text-color: #ccd6f6;
+    --accent-color: #64ffda; 
+    
+    /* SMOKED GLASS (0.4) */
+    --glass-bg: rgba(11, 13, 16, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --card-bg: rgba(17, 34, 64, 0.35);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    overflow-x: hidden;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* 3D Canvas */
+#bg-canvas {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+/* GLASS HEADER */
+/* DYNAMIC HEADER */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px; /* Starts slightly taller/spacious */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    
+    /* Default State (At Top): Transparent & Clean */
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+    
+    /* Smooth Transition for the "Pop" effect */
+    transition: all 0.4s ease;
+}
+
+/* The "Scrolled" State (The Glass Effect) */
+nav.scrolled {
+    padding: 15px 50px; /* Shrinks slightly for a tighter look */
+    
+    /* The Glass Variables */
+    background: var(--glass-bg);
+    border-bottom: 1px solid var(--glass-border);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    
+    /* A subtle shadow to make it lift off the page */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark Mode Shadow adjustment */
+body.dark-mode nav.scrolled {
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.logo { font-weight: 800; font-size: 1.5rem; color: var(--accent-color); }
+
+ul { list-style: none; }
+.nav-links { display: flex; gap: 30px; }
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+.nav-links a:hover { color: var(--accent-color); }
+
+/* Hero Section */
+header {
+    height: 100vh;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    padding: 0 20px;
+}
+h1 { font-size: 4rem; margin-bottom: 10px; }
+h2 { font-size: 2rem; color: #666; margin-bottom: 20px; } /* Slightly darker grey for light mode */
+body.dark-mode h2 { color: #8892b0; }
+
+.accent { color: var(--accent-color); }
+
+/* Buttons */
+.cta-buttons { margin-top: 30px; display: flex; gap: 20px; justify-content: center; }
+.btn {
+    padding: 12px 24px; border-radius: 5px;
+    border: 1px solid var(--accent-color); font-weight: 600;
+}
+.primary { background: var(--accent-color); color: var(--bg-color); }
+.secondary { color: var(--accent-color); }
+.primary:hover { opacity: 0.8; }
+.secondary:hover { background: rgba(0, 86, 179, 0.1); }
+
+/* Sections */
+.container { max-width: 1000px; margin: 100px auto; padding: 0 20px; }
+h3 { font-size: 1.8rem; margin-bottom: 40px; color: var(--accent-color); display: flex; align-items: center; }
+h3::after { content: ""; display: block; width: 300px; height: 1px; background: #ccc; margin-left: 20px; }
+body.dark-mode h3::after { background: #233554; }
+
+/* GLASS CARDS */
+.skills-grid, #projects { display: grid; gap: 20px; }
+.skills-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+.skill-card, .project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 25px; border-radius: 12px;
+    transition: transform 0.3s;
+}
+.skill-card:hover, .project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+}
+
+.tech-tags { color: var(--accent-color); font-family: monospace; font-size: 0.9rem; margin: 10px 0; }
+footer { text-align: center; padding: 20px; color: #666; font-size: 0.9rem; }
+body.dark-mode footer { color: #8892b0; }
+
+/* Contact Fix */
+.social-links { margin-top: 30px; display: flex; gap: 20px; }
+#contact p { font-size: 1.1rem; max-width: 600px; }
+
+/* Time Display */
+#ny-time { color: var(--text-color); font-family: monospace; font-size: 0.9rem; }
+
+/* GitHub Button Style */
+.github-btn {
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    transition: 0.3s;
+}
+
+.github-btn:hover {
+    background: var(--text-color);
+    color: var(--bg-color); /* Inverts colors on hover */
+    transform: translateY(-3px);
+}
+
+/* Make the Nav Icon slightly bigger */
+.nav-links .fa-github {
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
