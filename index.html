@@ -1,148 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prasanth Muntha | AI Engineer</title>
-
+    <title>Prasanth Muntha | AI/ML Engineer</title>
+    <meta name="description" content="AI/ML Engineer building Agentic AI, 3D Vision Pipelines, and Scalable Data Systems.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+    <!-- Animated Background -->
+    <div class="bg-gradient"></div>
+    <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
 
-    <canvas id="bg-canvas"></canvas>
+    <!-- Navigation -->
     <nav>
-        <div class="logo">PM.</div>
-        <div id="ny-time" style="font-family: monospace; font-size: 0.9rem; color: var(--text-color);">
-            NYC: --:--:--
-        </div>
+        <a href="#home" class="logo">PM<span class="accent">.</span></a>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
             <li>
-                <a href="https://github.com/prsanthx" target="_blank" title="GitHub">
+                <a href="https://github.com/prsanthx" target="_blank" aria-label="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
             </li>
-            <li><i id="theme-toggle" class="fas fa-moon" style="cursor: pointer;"></i></li>
+            <li>
+                <button id="snow-toggle" aria-label="Toggle snow">
+                    <i class="fas fa-snowflake"></i>
+                </button>
+            </li>
+            <li>
+                <button id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </li>
         </ul>
     </nav>
+    
+    <!-- Snow Container -->
+    <div class="snow-container"></div>
 
+    <!-- Hero Section -->
     <header id="home">
         <div class="hero-content">
-            <h1>Hi, I'm <span class="accent">Prasanth Muntha</span></h1>
-            <h2>AI/ML Engineer</h2>
-            <p>Building Agentic AI, 3D Vision Pipelines, and Scalable Data Systems.</p>
+            <p class="greeting">Hi, my name is</p>
+            <h1>Prasanth Muntha<span class="accent">.</span></h1>
+            <h2>I build intelligent systems.</h2>
+            <p class="hero-description">
+                AI/ML Engineer specializing in <span class="highlight">Agentic AI</span>, 
+                <span class="highlight">3D Computer Vision</span>, and 
+                <span class="highlight">Scalable Data Systems</span>.
+                Currently pursuing MS in AI at Yeshiva University.
+            </p>
             <div class="cta-buttons">
-                <a href="#projects" class="btn primary">View Work</a>
-                <a href="#contact" class="btn secondary">Contact Me</a>
+                <a href="#projects" class="btn primary">View My Work</a>
+                <a href="https://github.com/prsanthx" target="_blank" class="btn secondary">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
             </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
         </div>
     </header>
 
     <main>
-        <section id="about" class="container">
-            <h3>01. About Me</h3>
-            <p>
-                I am currently pursuing my <strong>Master's in Artificial Intelligence</strong> at Yeshiva University.
-                With a background as a Software Developer at Aloha Technologies, I bridge the gap between
-                <strong>3D Computer Vision</strong>, <strong>Agentic AI</strong>, and <strong>Cloud Data
-                    Engineering</strong>.
-            </p>
-        </section>
-
-        <section id="skills" class="container">
-            <h3>02. Tech Stack</h3>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <i class="fa-brands fa-python"></i>
-                    <h4>AI & ML</h4>
-                    <p>Llama 3, LangChain, PyTorch, TensorFlow, MoveNet, OpenCV, RAG Pipelines</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fa-solid fa-cloud"></i>
-                    <h4>Cloud & Data</h4>
-                    <p>AWS (Glue, Athena, MWAA), Airflow, Docker, PostgreSQL, MongoDB</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fa-solid fa-cube"></i>
-                    <h4>3D & Vision</h4>
-                    <p>PyVista, VTK, ONNX Runtime, Geometric Processing</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fa-solid fa-code"></i>
-                    <h4>Web</h4>
-                    <p>FastAPI, Flask, Streamlit, React, GraphQL</p>
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <h3><span class="section-number">01.</span> About Me</h3>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            I'm a Software Developer and AI/ML Practitioner with experience at 
+                            <span class="highlight">Aloha Technologies</span>. I bridge the gap between 
+                            cutting-edge AI research and production-ready systems.
+                        </p>
+                        <p>
+                            My focus areas include building local-first reasoning agents, 
+                            hybrid deep learning pipelines, and cloud-native data architectures.
+                        </p>
+                        <div class="tech-list">
+                            <span>Python</span>
+                            <span>PyTorch</span>
+                            <span>LangChain</span>
+                            <span>AWS</span>
+                            <span>FastAPI</span>
+                            <span>Docker</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="projects" class="container">
-            <h3>03. Featured Projects</h3>
-
-            <div class="project-card">
-                <div class="project-info">
-                    <h4>Local-First Agentic RAG</h4>
-                    <p class="tech-tags">Python | LangChain | Llama 3.2 | ChromaDB</p>
-                    <p>A privacy-centric AI platform featuring "Flight Mode" for air-gapped document inference. Includes
-                        an intelligent routing agent that switches between Vector Search and Web Search.</p>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-info">
-                    <h4>3D Scoliosis Detection System</h4>
-                    <p class="tech-tags">PyVista | MoveNet | VTK | ONNX</p>
-                    <p>Built a hybrid 3D-AI pipeline for automated diagnosis. Achieved 99% accuracy in view
-                        classification by projecting 3D meshes into 2D feature maps.</p>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-info">
-                    <h4>Agentic Fake News Detection</h4>
-                    <p class="tech-tags">BERT | Llama 3 | NLP</p>
-                    <p>Architected a hybrid verification pipeline combining BERT for probability scoring and an Agentic
-                        LLM for semantic fact-checking against trusted sources.</p>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-info">
-                    <h4>AWS Airflow Data Migration</h4>
-                    <p class="tech-tags">AWS Glue | Athena | MWAA | S3</p>
-                    <p>Led the migration of legacy Pentaho workflows to Amazon MWAA, reducing pipeline runtimes by 40%
-                        using modular Python-based DAGs.</p>
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="container">
+                <h3><span class="section-number">02.</span> Tech Stack</h3>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                        <h4>AI & ML</h4>
+                        <p>Llama 3, LangChain, PyTorch, TensorFlow, RAG Pipelines, Ollama</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+                        <h4>Cloud & Data</h4>
+                        <p>AWS (Glue, Athena, MWAA), Airflow, Docker, PostgreSQL, MongoDB</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-cube"></i></div>
+                        <h4>3D & Vision</h4>
+                        <p>PyVista, VTK, OpenCV, ONNX Runtime, MoveNet</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-code"></i></div>
+                        <h4>Web & APIs</h4>
+                        <p>FastAPI, Streamlit, React, REST, GraphQL</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="container">
-            <h3>04. Get In Touch</h3>
-            <p>Currently open for Summer 2026 Internships in AI/ML and Data Engineering.</p>
-            <div class="social-links">
-                <a href="mailto:pmuntha@mail.yu.edu" class="btn primary">Email Me</a>
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                <h3><span class="section-number">03.</span> Featured Projects</h3>
+                <div class="projects-grid">
+                    
+                    <article class="project-card featured">
+                        <div class="project-header">
+                            <i class="fas fa-folder-open"></i>
+                            <div class="project-links">
+                                <a href="https://github.com/prsanthx/githubx" target="_blank" aria-label="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <h4>githubx</h4>
+                        <p>AI-powered tool that converts complex GitHub READMEs into simplified, OS-specific installation guides. Features multi-provider AI support and modern glassmorphism UI.</p>
+                        <div class="project-tech">
+                            <span>FastAPI</span>
+                            <span>Google Gemma</span>
+                            <span>Ollama</span>
+                            <span>Python</span>
+                        </div>
+                    </article>
 
-                <a href="https://www.linkedin.com/in/prasanth-muntha-30b96623b/" target="_blank" class="btn secondary">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
+                    <article class="project-card">
+                        <div class="project-header">
+                            <i class="fas fa-folder-open"></i>
+                        </div>
+                        <h4>Local-First Agentic RAG</h4>
+                        <p>Privacy-centric AI platform with "Flight Mode" for air-gapped document inference. Intelligent routing between Vector Search, Web Search, and Python Analyst agents.</p>
+                        <div class="project-tech">
+                            <span>LangChain</span>
+                            <span>Llama 3.2</span>
+                            <span>ChromaDB</span>
+                            <span>Streamlit</span>
+                        </div>
+                    </article>
 
-                <a href="https://github.com/prsanthx" target="_blank" class="btn github-btn">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
+                    <article class="project-card">
+                        <div class="project-header">
+                            <i class="fas fa-folder-open"></i>
+                        </div>
+                        <h4>3D Scoliosis Detection</h4>
+                        <p>Hybrid 3D-AI pipeline for automated medical diagnosis. Achieved 99% accuracy by projecting 3D meshes into 2D feature maps for clinical ROI segmentation.</p>
+                        <div class="project-tech">
+                            <span>PyVista</span>
+                            <span>MoveNet</span>
+                            <span>VTK</span>
+                            <span>ONNX</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-header">
+                            <i class="fas fa-folder-open"></i>
+                        </div>
+                        <h4>Agentic Fake News Detection</h4>
+                        <p>Hybrid verification pipeline combining BERT for probability scoring and Agentic LLM for semantic fact-checking. Explains <em>why</em> news is fake.</p>
+                        <div class="project-tech">
+                            <span>BERT</span>
+                            <span>Llama 3</span>
+                            <span>NLP</span>
+                            <span>Python</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-header">
+                            <i class="fas fa-folder-open"></i>
+                        </div>
+                        <h4>AWS Airflow Migration</h4>
+                        <p>Led migration of legacy Pentaho workflows to Amazon MWAA. Reduced pipeline runtimes by 40% using modular Python-based DAGs.</p>
+                        <div class="project-tech">
+                            <span>AWS Glue</span>
+                            <span>Athena</span>
+                            <span>MWAA</span>
+                            <span>S3</span>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <h3><span class="section-number">04.</span> Get In Touch</h3>
+                <div class="contact-content">
+                    <p>
+                        I'm currently looking for <span class="highlight">Summer 2026 Internships</span> 
+                        in AI/ML and Data Engineering. Feel free to reach out!
+                    </p>
+                    <div class="contact-links">
+                        <a href="mailto:pmuntha@mail.yu.edu" class="btn primary">
+                            <i class="fas fa-envelope"></i> Email Me
+                        </a>
+                        <a href="https://www.linkedin.com/in/prasanth-muntha-30b96623b/" target="_blank" class="btn secondary">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a>
+                        <a href="https://github.com/prsanthx" target="_blank" class="btn secondary">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
+    <!-- Footer -->
     <footer>
-        <p>Built by Prasanth Muntha using Three.js</p>
+        <p>Designed & Built by <span class="accent">Prasanth Muntha</span></p>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>
 </body>
-
 </html>
