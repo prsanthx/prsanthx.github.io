@@ -5,246 +5,326 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prasanth Muntha | AI/ML Engineer</title>
     <meta name="description" content="AI/ML Engineer building Agentic AI, 3D Vision Pipelines, and Scalable Data Systems.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-gradient"></div>
-    <div class="bg-orbs">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
+    <!-- Loading Screen -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="loader-logo">PM<span class="loader-dot">.</span></div>
+            <div class="loader-terminal">
+                <div class="loader-line" id="load-1"></div>
+                <div class="loader-line" id="load-2"></div>
+                <div class="loader-line" id="load-3"></div>
+                <div class="loader-line" id="load-4"></div>
+            </div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress" class="scroll-progress"></div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor" class="custom-cursor"></div>
+    <div id="cursor-trail" class="cursor-trail"></div>
+
+    <!-- Circuit Line Canvas -->
+    <canvas id="circuit-canvas" aria-hidden="true"></canvas>
+
+    <!-- Terminal Mode -->
+    <div id="terminal-overlay" class="terminal-overlay" aria-hidden="true">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="term-btn close"></span>
+                    <span class="term-btn minimize"></span>
+                    <span class="term-btn maximize"></span>
+                </div>
+                <span class="terminal-title">visitor@prasanth.dev</span>
+                <span class="terminal-hint">ESC to close</span>
+            </div>
+            <div class="terminal-body" id="terminal-body">
+                <div class="terminal-output" id="terminal-output"></div>
+                <div class="terminal-input-line">
+                    <span class="terminal-prompt">visitor@prasanth.dev ~ $</span>
+                    <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" spellcheck="false" autofocus>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resume Modal -->
+    <div id="resume-modal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>resume.pdf</span>
+                </div>
+                <div class="modal-actions">
+                    <a href="resume.pdf" download class="modal-btn">
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                    <a href="resume.pdf" target="_blank" class="modal-btn outline">
+                        <i class="fas fa-external-link-alt"></i> Open
+                    </a>
+                    <button id="close-modal" class="modal-btn ghost">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <!-- Compile Animation Overlay -->
+                <div class="compile-overlay" id="compile-overlay">
+                    <div class="compile-terminal">
+                        <div class="terminal-line" id="term-1"></div>
+                        <div class="terminal-line" id="term-2"></div>
+                        <div class="terminal-line" id="term-3"></div>
+                        <div class="terminal-line" id="term-4"></div>
+                        <div class="terminal-line active" id="term-5"></div>
+                    </div>
+                </div>
+                <!-- PDF Viewer -->
+                <iframe src="resume.pdf" id="pdf-viewer" title="Resume PDF"></iframe>
+            </div>
+        </div>
     </div>
 
     <!-- Navigation -->
     <nav>
-        <a href="#home" class="logo">PM<span class="accent">.</span></a>
+        <a href="#home" class="logo">PM<span class="dot">.</span></a>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
+            <li><a href="#stack">Stack</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li>
-                <a href="https://github.com/prsanthx" target="_blank" aria-label="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-            </li>
-            <li>
-                <button id="snow-toggle" aria-label="Toggle snow">
-                    <i class="fas fa-snowflake"></i>
-                </button>
-            </li>
-            <li>
-                <button id="theme-toggle" aria-label="Toggle theme">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </li>
         </ul>
     </nav>
-    
-    <!-- Snow Container -->
-    <div class="snow-container"></div>
 
     <!-- Hero Section -->
     <header id="home">
-        <div class="hero-content">
-            <p class="greeting">Hi, my name is</p>
-            <h1>Prasanth Muntha<span class="accent">.</span></h1>
-            <h2>I build intelligent systems.</h2>
-            <p class="hero-description">
-                AI/ML Engineer specializing in <span class="highlight">Agentic AI</span>, 
-                <span class="highlight">3D Computer Vision</span>, and 
-                <span class="highlight">Scalable Data Systems</span>.
-                Currently pursuing MS in AI at Yeshiva University.
+        <div class="hero-left">
+            <p class="label">AI/ML Engineer</p>
+            <h1>Prasanth<br/>Muntha</h1>
+            <p class="tagline">
+                Agentic AI · 3D Vision · Data Pipelines
             </p>
-            <div class="cta-buttons">
-                <a href="#projects" class="btn primary">View My Work</a>
-                <a href="https://github.com/prsanthx" target="_blank" class="btn secondary">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
+            <div class="hero-cta">
+                <a href="#projects" class="btn">See Projects</a>
+                <button id="open-resume" class="btn outline">
+                    <i class="fas fa-file-alt"></i> Resume
+                </button>
             </div>
         </div>
-        <div class="scroll-indicator">
-            <span>Scroll</span>
-            <div class="scroll-line"></div>
+
+        <div class="hero-right">
+            <div class="status-panel">
+                <div class="panel-header">
+                    <span class="mono">/status</span>
+                    <span class="blink-dot"></span>
+                </div>
+                <div class="panel-content">
+                    <div class="typing-line" id="typing-1"></div>
+                    <div class="typing-line" id="typing-2"></div>
+                    <div class="typing-line" id="typing-3"></div>
+                </div>
+                <div class="panel-footer">
+                    <span class="in-works">
+                        <span class="spinner"></span>
+                        <span>building...</span>
+                    </span>
+                </div>
+            </div>
         </div>
     </header>
 
     <main>
-        <!-- About Section -->
+        <!-- About -->
         <section id="about">
-            <div class="container">
-                <h3><span class="section-number">01.</span> About Me</h3>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>
-                            I'm a Software Developer and AI/ML Practitioner with experience at 
-                            <span class="highlight">Aloha Technologies</span>. I bridge the gap between 
-                            cutting-edge AI research and production-ready systems.
-                        </p>
-                        <p>
-                            My focus areas include building local-first reasoning agents, 
-                            hybrid deep learning pipelines, and cloud-native data architectures.
-                        </p>
-                        <div class="tech-list">
+            <div class="section-node" data-node="about"></div>
+            <div class="section-content">
+                <span class="section-label">01 / About</span>
+                <h2>Building systems that think</h2>
+                <p>
+                    Currently pursuing my <strong>MS in Artificial Intelligence</strong> at Yeshiva University in New York.
+                    I specialize in bridging research and production — turning papers into pipelines.
+                </p>
+                <p>
+                    My work spans <strong>local-first AI agents</strong>, <strong>3D computer vision</strong>, and <strong>cloud-native data platforms</strong>.
+                    I build things that are fast, private, and actually work in the real world.
+                </p>
+            </div>
+        </section>
+
+        <!-- Tech Stack -->
+        <section id="stack">
+            <div class="section-node" data-node="stack"></div>
+            <div class="section-content">
+                <span class="section-label">02 / Stack</span>
+                <h2>Tools I use</h2>
+                
+                <div class="stack-grid">
+                    <div class="stack-category">
+                        <h4>Languages</h4>
+                        <div class="stack-items">
                             <span>Python</span>
+                            <span>JavaScript</span>
+                            <span>SQL</span>
+                            <span>Bash</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stack-category">
+                        <h4>AI / ML</h4>
+                        <div class="stack-items">
                             <span>PyTorch</span>
                             <span>LangChain</span>
-                            <span>AWS</span>
-                            <span>FastAPI</span>
-                            <span>Docker</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills">
-            <div class="container">
-                <h3><span class="section-number">02.</span> Tech Stack</h3>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-brain"></i></div>
-                        <h4>AI & ML</h4>
-                        <p>Llama 3, LangChain, PyTorch, TensorFlow, RAG Pipelines, Ollama</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-cloud"></i></div>
-                        <h4>Cloud & Data</h4>
-                        <p>AWS (Glue, Athena, MWAA), Airflow, Docker, PostgreSQL, MongoDB</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-cube"></i></div>
-                        <h4>3D & Vision</h4>
-                        <p>PyVista, VTK, OpenCV, ONNX Runtime, MoveNet</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-code"></i></div>
-                        <h4>Web & APIs</h4>
-                        <p>FastAPI, Streamlit, React, REST, GraphQL</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects">
-            <div class="container">
-                <h3><span class="section-number">03.</span> Featured Projects</h3>
-                <div class="projects-grid">
-                    
-                    <article class="project-card featured">
-                        <div class="project-header">
-                            <i class="fas fa-folder-open"></i>
-                            <div class="project-links">
-                                <a href="https://github.com/prsanthx/githubx" target="_blank" aria-label="GitHub">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <h4>githubx</h4>
-                        <p>AI-powered tool that converts complex GitHub READMEs into simplified, OS-specific installation guides. Features multi-provider AI support and modern glassmorphism UI.</p>
-                        <div class="project-tech">
-                            <span>FastAPI</span>
-                            <span>Google Gemma</span>
                             <span>Ollama</span>
-                            <span>Python</span>
+                            <span>ONNX</span>
+                            <span>HuggingFace</span>
+                            <span>Scikit-learn</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stack-category">
+                        <h4>3D / Vision</h4>
+                        <div class="stack-items">
+                            <span>PyVista</span>
+                            <span>VTK</span>
+                            <span>OpenCV</span>
+                            <span>MoveNet</span>
+                            <span>YOLOv8</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stack-category">
+                        <h4>Data</h4>
+                        <div class="stack-items">
+                            <span>Pandas</span>
+                            <span>Airflow</span>
+                            <span>ChromaDB</span>
+                            <span>PostgreSQL</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stack-category">
+                        <h4>Cloud / DevOps</h4>
+                        <div class="stack-items">
+                            <span>AWS</span>
+                            <span>Docker</span>
+                            <span>FastAPI</span>
+                            <span>Git</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects">
+            <div class="section-node" data-node="projects"></div>
+            <div class="section-content">
+                <span class="section-label">03 / Projects</span>
+                <h2>Things I've built</h2>
+
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <div class="project-header">
+                            <span class="project-num">01</span>
+                            <a href="https://github.com/prsanthx/githubx" target="_blank" class="project-link">
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                        <h3>githubx</h3>
+                        <p class="project-desc">AI that converts complex GitHub READMEs into simple, OS-specific installation guides. No more copy-pasting broken commands.</p>
+                        <div class="project-stack">
+                            <span>FastAPI</span>
+                            <span>Ollama</span>
+                            <span>Gemma</span>
                         </div>
                     </article>
 
                     <article class="project-card">
                         <div class="project-header">
-                            <i class="fas fa-folder-open"></i>
+                            <span class="project-num">02</span>
                         </div>
-                        <h4>Local-First Agentic RAG</h4>
-                        <p>Privacy-centric AI platform with "Flight Mode" for air-gapped document inference. Intelligent routing between Vector Search, Web Search, and Python Analyst agents.</p>
-                        <div class="project-tech">
+                        <h3>Local-First Agentic RAG</h3>
+                        <p class="project-desc">Privacy-first AI with "Flight Mode" — air-gapped inference, zero data leakage. Routes queries between Vector Search, Web, and Python Analyst.</p>
+                        <div class="project-stack">
                             <span>LangChain</span>
                             <span>Llama 3.2</span>
                             <span>ChromaDB</span>
-                            <span>Streamlit</span>
                         </div>
                     </article>
 
                     <article class="project-card">
                         <div class="project-header">
-                            <i class="fas fa-folder-open"></i>
+                            <span class="project-num">03</span>
                         </div>
-                        <h4>3D Scoliosis Detection</h4>
-                        <p>Hybrid 3D-AI pipeline for automated medical diagnosis. Achieved 99% accuracy by projecting 3D meshes into 2D feature maps for clinical ROI segmentation.</p>
-                        <div class="project-tech">
+                        <h3>3D Scoliosis Detection</h3>
+                        <p class="project-desc">Production 3D AI pipeline: raw body scans → mesh rectification → pose detection → ROI segmentation → Cobb angle. 99% view classification.</p>
+                        <div class="project-stack">
                             <span>PyVista</span>
                             <span>MoveNet</span>
-                            <span>VTK</span>
                             <span>ONNX</span>
                         </div>
                     </article>
 
                     <article class="project-card">
                         <div class="project-header">
-                            <i class="fas fa-folder-open"></i>
+                            <span class="project-num">04</span>
                         </div>
-                        <h4>Agentic Fake News Detection</h4>
-                        <p>Hybrid verification pipeline combining BERT for probability scoring and Agentic LLM for semantic fact-checking. Explains <em>why</em> news is fake.</p>
-                        <div class="project-tech">
+                        <h3>Fake News Detection</h3>
+                        <p class="project-desc">Hybrid verification: BERT classification + LLM semantic fact-checking. Explains <em>why</em> a claim is unreliable, not just that it is.</p>
+                        <div class="project-stack">
                             <span>BERT</span>
                             <span>Llama 3</span>
                             <span>NLP</span>
-                            <span>Python</span>
                         </div>
                     </article>
-
-                    <article class="project-card">
-                        <div class="project-header">
-                            <i class="fas fa-folder-open"></i>
-                        </div>
-                        <h4>AWS Airflow Migration</h4>
-                        <p>Led migration of legacy Pentaho workflows to Amazon MWAA. Reduced pipeline runtimes by 40% using modular Python-based DAGs.</p>
-                        <div class="project-tech">
-                            <span>AWS Glue</span>
-                            <span>Athena</span>
-                            <span>MWAA</span>
-                            <span>S3</span>
-                        </div>
-                    </article>
-
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
+        <!-- Contact -->
         <section id="contact">
-            <div class="container">
-                <h3><span class="section-number">04.</span> Get In Touch</h3>
-                <div class="contact-content">
-                    <p>
-                        I'm currently looking for <span class="highlight">Summer 2026 Internships</span> 
-                        in AI/ML and Data Engineering. Feel free to reach out!
-                    </p>
-                    <div class="contact-links">
-                        <a href="mailto:pmuntha@mail.yu.edu" class="btn primary">
-                            <i class="fas fa-envelope"></i> Email Me
-                        </a>
-                        <a href="https://www.linkedin.com/in/prasanth-muntha-30b96623b/" target="_blank" class="btn secondary">
-                            <i class="fab fa-linkedin"></i> LinkedIn
-                        </a>
-                        <a href="https://github.com/prsanthx" target="_blank" class="btn secondary">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
+            <div class="section-node" data-node="contact"></div>
+            <div class="section-content">
+                <span class="section-label">04 / Contact</span>
+                <h2>Let's talk</h2>
+                <p>
+                    Looking for <strong>Summer 2026 internships</strong> in AI/ML, 3D Vision, and Data Engineering.
+                    If you're building something ambitious — I want in.
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:pmuntha@mail.yu.edu" class="btn">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                    <a href="https://linkedin.com/in/prasanth-muntha-30b96623b/" target="_blank" class="btn outline">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/prsanthx" target="_blank" class="btn outline">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
-        <p>Designed & Built by <span class="accent">Prasanth Muntha</span></p>
+        <div class="footer-node" data-node="end"></div>
+        <p>Designed & Built by <strong>Prasanth Muntha</strong></p>
     </footer>
 
     <script src="script.js"></script>
