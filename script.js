@@ -41,13 +41,72 @@ async function runLoader() {
   // Remove from DOM after animation
   setTimeout(() => {
     loader?.remove();
+    tryShowGlacixPopup();
   }, 500);
 }
 
 // Start loader
 if (loader) {
   runLoader();
-} 
+}
+
+// =========================================================
+// GLACIX POPUP (show again after 24h if they clicked "Maybe later")
+// =========================================================
+
+const GLACIX_POPUP_KEY = 'pm_glacix_popup_dismissed_at';
+const GLACIX_POPUP_COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24 hours
+
+function tryShowGlacixPopup() {
+  const dismissedAt = localStorage.getItem(GLACIX_POPUP_KEY);
+  if (dismissedAt) {
+    const elapsed = Date.now() - parseInt(dismissedAt, 10);
+    if (elapsed < GLACIX_POPUP_COOLDOWN_MS) return;
+  }
+
+  const popup = document.getElementById('glacix-popup');
+  const closeBtn = document.getElementById('glacix-popup-close');
+  const dismissBtn = document.querySelector('.glacix-popup-dismiss');
+  const backdrop = document.querySelector('.glacix-popup-backdrop');
+
+  if (!popup) return;
+
+  setTimeout(() => {
+    popup.classList.add('active');
+    popup.setAttribute('aria-hidden', 'false');
+  }, 400);
+
+  function closePopup() {
+    popup.classList.remove('active');
+    popup.setAttribute('aria-hidden', 'true');
+    localStorage.setItem(GLACIX_POPUP_KEY, String(Date.now()));
+  }
+
+  closeBtn?.addEventListener('click', closePopup);
+  dismissBtn?.addEventListener('click', closePopup);
+  backdrop?.addEventListener('click', closePopup);
+
+  document.addEventListener('keydown', function escClose(e) {
+    if (e.key === 'Escape') {
+      closePopup();
+      document.removeEventListener('keydown', escClose);
+    }
+  });
+}
+
+// =========================================================
+// TOP GLACIX BAR (dismissible for this visit only, shows every time you open the site)
+// =========================================================
+
+const glacixBar = document.getElementById('glacix-bar');
+const glacixBarClose = document.getElementById('glacix-bar-close');
+
+glacixBarClose?.addEventListener('click', () => {
+  glacixBar?.classList.add('hidden');
+  setTimeout(() => {
+    document.body.classList.add('glacix-bar-dismissed');
+  }, 300);
+}); 
 
 
 // =========================================================
@@ -68,6 +127,31 @@ function updateScrollProgress() {
 
 window.addEventListener('scroll', updateScrollProgress, { passive: true });
 updateScrollProgress();
+
+
+// =========================================================
+// BACK TO TOP
+// =========================================================
+
+const backToTop = document.getElementById('back-to-top');
+const BACK_TO_TOP_THRESHOLD = 400;
+
+function updateBackToTop() {
+  if (!backToTop) return;
+  if (window.scrollY > BACK_TO_TOP_THRESHOLD) {
+    backToTop.classList.add('visible');
+  } else {
+    backToTop.classList.remove('visible');
+  }
+}
+
+window.addEventListener('scroll', updateBackToTop, { passive: true });
+updateBackToTop();
+
+backToTop?.addEventListener('click', (e) => {
+  e.preventDefault();
+  document.getElementById('home')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
 
 
 // =========================================================
@@ -449,11 +533,21 @@ window.addEventListener('scroll', () => {
 
 
 // ===== "In the Works" Typing =====
-const typingLines = [
-  { el: document.getElementById('typing-1'), text: '> building agentic systems' },
-  { el: document.getElementById('typing-2'), text: '> local-first, privacy-first' },
-  { el: document.getElementById('typing-3'), text: '> open for Summer 2026 internships' }
+const buildingMessages = [
+  '> building Glacix v2',
+  '> building agentic systems',
+  '> local-first, privacy-first',
+  '> RAG + multi-model pipelines',
+  '> open for Summer 2026'
 ];
+
+const typingLines = [
+  { el: document.getElementById('typing-1'), text: '> building Glacix v2' },
+  { el: document.getElementById('typing-2'), text: '> local-first, privacy-first' },
+  { el: document.getElementById('typing-3'), text: '> open for Summer 2026' }
+];
+
+let buildingIndex = 0;
 
 async function typeText(element, text, speed = 40) {
   if (!element) return;
@@ -476,6 +570,8 @@ async function runTypingAnimation() {
   for (const line of typingLines) {
     if (line.el) line.el.textContent = '';
   }
+  buildingIndex = (buildingIndex + 1) % buildingMessages.length;
+  typingLines[0].text = buildingMessages[buildingIndex];
   runTypingAnimation();
 }
 
@@ -493,7 +589,7 @@ const terminalLines = [
   { id: 'term-1', text: '$ pdflatex resume.tex', delay: 0 },
   { id: 'term-2', text: '<span class="info">This is pdfTeX, Version 3.14159265</span>', delay: 400 },
   { id: 'term-3', text: '<span class="info">entering extended mode...</span>', delay: 700 },
-  { id: 'term-4', text: '<span class="file">Output written on resume.pdf (1 page)</span>', delay: 1100 },
+  { id: 'term-4', text: '<span class="file">Output written on resumee.pdf (1 page)</span>', delay: 1100 },
   { id: 'term-5', text: '<span class="success">✓ Compilation successful</span>', delay: 1500 }
 ];
 
@@ -1047,6 +1143,7 @@ const commands = {
   <span class="success">01</span>  about/
   <span class="success">02</span>  stack/
   <span class="success">03</span>  projects/
+      ├── glacix
       ├── githubx
       ├── local-first-rag
       ├── 3d-scoliosis

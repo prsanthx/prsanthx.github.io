@@ -15,6 +15,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Top announcement: Glacix live (shows every visit) -->
+    <div id="glacix-bar" class="glacix-bar glacix-bar-v2">
+        <span class="glacix-bar-dot"></span>
+        <a href="https://glacix-ai-chatbot.vercel.app" target="_blank" rel="noopener" class="glacix-bar-link">
+            <strong>Glacix</strong> is live — try the AI chatbot
+        </a>
+        <button type="button" id="glacix-bar-close" class="glacix-bar-close" aria-label="Dismiss">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
     <!-- Loading Screen -->
     <div id="loader" class="loader">
         <div class="loader-content">
@@ -70,13 +81,13 @@
             <div class="modal-header">
                 <div class="modal-title">
                     <i class="fas fa-file-pdf"></i>
-                    <span>resume.pdf</span>
+                    <span>resumee.pdf</span>
                 </div>
                 <div class="modal-actions">
-                    <a href="resume.pdf" download class="modal-btn">
+                    <a href="resumee.pdf" download class="modal-btn">
                         <i class="fas fa-download"></i> Download
                     </a>
-                    <a href="resume.pdf" target="_blank" class="modal-btn outline">
+                    <a href="resumee.pdf" target="_blank" class="modal-btn outline">
                         <i class="fas fa-external-link-alt"></i> Open
                     </a>
                     <button id="close-modal" class="modal-btn ghost">
@@ -96,10 +107,35 @@
                     </div>
                 </div>
                 <!-- PDF Viewer -->
-                <iframe src="resume.pdf" id="pdf-viewer" title="Resume PDF"></iframe>
+                <iframe src="resumee.pdf" id="pdf-viewer" title="Resume PDF"></iframe>
             </div>
         </div>
     </div>
+
+    <!-- Glacix Try-it Popup -->
+    <div id="glacix-popup" class="glacix-popup" aria-hidden="true">
+        <div class="glacix-popup-backdrop"></div>
+        <div class="glacix-popup-card">
+            <button type="button" id="glacix-popup-close" class="glacix-popup-close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="glacix-popup-glow"></div>
+            <div class="glacix-popup-content">
+                <span class="glacix-popup-badge">Latest</span>
+                <h3 class="glacix-popup-title">Glacix</h3>
+                <p class="glacix-popup-desc">Full-stack AI chatbot — multi-model, RAG, web search & citations. Try it live.</p>
+                <a href="https://glacix-ai-chatbot.vercel.app" target="_blank" rel="noopener" class="btn glacix-popup-cta">
+                    <i class="fas fa-arrow-up-right-from-square"></i> Try Glacix
+                </a>
+                <button type="button" class="glacix-popup-dismiss">Maybe later</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to top -->
+    <a href="#home" id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
 
     <!-- Navigation -->
     <nav>
@@ -179,6 +215,7 @@
                         <h4>Languages</h4>
                         <div class="stack-items">
                             <span>Python</span>
+                            <span>TypeScript</span>
                             <span>JavaScript</span>
                             <span>SQL</span>
                             <span>Bash</span>
@@ -190,6 +227,7 @@
                         <div class="stack-items">
                             <span>PyTorch</span>
                             <span>LangChain</span>
+                            <span>Vercel AI SDK</span>
                             <span>Ollama</span>
                             <span>ONNX</span>
                             <span>HuggingFace</span>
@@ -219,11 +257,21 @@
                     </div>
                     
                     <div class="stack-category">
+                        <h4>Frontend / Full-stack</h4>
+                        <div class="stack-items">
+                            <span>Nuxt</span>
+                            <span>Vue</span>
+                            <span>Tailwind</span>
+                            <span>FastAPI</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stack-category">
                         <h4>Cloud / DevOps</h4>
                         <div class="stack-items">
                             <span>AWS</span>
+                            <span>Vercel</span>
                             <span>Docker</span>
-                            <span>FastAPI</span>
                             <span>Git</span>
                         </div>
                     </div>
@@ -239,12 +287,32 @@
                 <h2>Things I've built</h2>
 
                 <div class="projects-grid">
+                    <article class="project-card project-card-featured">
+                        <a href="https://glacix-ai-chatbot.vercel.app" target="_blank" rel="noopener" class="project-card-link" aria-label="Try Glacix (live app)">
+                            <div class="project-header">
+                                <span class="project-num">01</span>
+                                <span class="project-badge">Latest</span>
+                                <span class="project-link">
+                                    <i class="fas fa-arrow-up-right-from-square"></i> Try it live
+                                </span>
+                            </div>
+                            <h3>Glacix</h3>
+                            <p class="project-sub">AI Chatbot</p>
+                            <p class="project-desc">Full-stack AI chatbot with Nuxt 4 and Vercel AI SDK. Multi-model support (NVIDIA NIM), RAG over documents (PDF, CSV, Excel, Word), live web search with citations, and per-user token usage tracking in PostgreSQL.</p>
+                            <div class="project-stack">
+                                <span>Nuxt 4</span>
+                                <span>Vue 3</span>
+                                <span>TypeScript</span>
+                                <span>Vercel AI SDK</span>
+                                <span>PostgreSQL</span>
+                                <span>Drizzle</span>
+                            </div>
+                        </a>
+                    </article>
+
                     <article class="project-card">
                         <div class="project-header">
-                            <span class="project-num">01</span>
-                            <a href="https://github.com/prsanthx/githubx" target="_blank" class="project-link">
-                                <i class="fas fa-arrow-up-right-from-square"></i>
-                            </a>
+                            <span class="project-num">02</span>
                         </div>
                         <h3>githubx</h3>
                         <p class="project-desc">AI that converts complex GitHub READMEs into simple, OS-specific installation guides. No more copy-pasting broken commands.</p>
@@ -257,7 +325,7 @@
 
                     <article class="project-card">
                         <div class="project-header">
-                            <span class="project-num">02</span>
+                            <span class="project-num">03</span>
                         </div>
                         <h3>Local-First Agentic RAG</h3>
                         <p class="project-desc">Privacy-first AI with "Flight Mode" — air-gapped inference, zero data leakage. Routes queries between Vector Search, Web, and Python Analyst.</p>
@@ -270,7 +338,7 @@
 
                     <article class="project-card">
                         <div class="project-header">
-                            <span class="project-num">03</span>
+                            <span class="project-num">04</span>
                         </div>
                         <h3>3D Scoliosis Detection</h3>
                         <p class="project-desc">Production 3D AI pipeline: raw body scans → mesh rectification → pose detection → ROI segmentation → Cobb angle. 99% view classification.</p>
@@ -283,7 +351,7 @@
 
                     <article class="project-card">
                         <div class="project-header">
-                            <span class="project-num">04</span>
+                            <span class="project-num">05</span>
                         </div>
                         <h3>Fake News Detection</h3>
                         <p class="project-desc">Hybrid verification: BERT classification + LLM semantic fact-checking. Explains <em>why</em> a claim is unreliable, not just that it is.</p>
@@ -330,3 +398,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+

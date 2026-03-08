@@ -61,6 +61,13 @@ A minimal, interactive portfolio website with a black & white aesthetic, termina
 - **Fonts** — Space Mono, Inter (Google Fonts)
 - **Icons** — Font Awesome 6
 
+### Featured Projects (linked from portfolio)
+- **Glacix** — Full-stack AI chatbot (Nuxt 4, Vercel AI SDK, PostgreSQL, RAG, web search)
+- **githubx** — README-to-install-guide AI
+- **Local-First Agentic RAG** — Privacy-first AI assistant
+- **3D Scoliosis Detection** — Production 3D vision pipeline
+- **Fake News Detection** — BERT + LLM hybrid
+
 ---
 
 ## Setup
@@ -94,8 +101,8 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
 ├── index.html      # Main HTML
 ├── style.css       # All styles (~1400 lines)
 ├── script.js       # All JavaScript (~1400 lines)
-├── resume.pdf      # Resume PDF file
-├── resume.tex      # Resume LaTeX source
+├── resumee.pdf     # Resume PDF file
+├── resume.tex      # Resume LaTeX source (compile to PDF)
 ├── favicon.svg     # PM. logo favicon
 └── README.md       # This file
 ```
