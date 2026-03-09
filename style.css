@@ -30,7 +30,7 @@ html {
   left: 0;
   right: 0;
   height: 40px;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--black);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
@@ -417,14 +417,11 @@ body.glacix-bar-dismissed .glacix-bar {
   }
 }
 
-/* Hide default cursor when custom cursor is active */
+/* Custom cursor shelved: show default pointer (cursor: none removed) */
 @media (hover: hover) and (pointer: fine) {
-  body {
-    cursor: none;
-  }
-  
-  a, button, input, textarea, select, [role="button"] {
-    cursor: none;
+  .custom-cursor,
+  .cursor-trail {
+    display: none;
   }
 }
 
